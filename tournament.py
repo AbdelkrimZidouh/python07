@@ -12,6 +12,18 @@ from ex2 import (
 def battle(
     opponents: list[tuple[CreatureFactory, BattleStrategy]]
 ) -> None:
+    for factory, strategy in opponents:
+        if not isinstance(factory, CreatureFactory):
+            raise TypeError(
+                f"Expected CreatureFactory, got "
+                f"{type(factory).__name__}"
+            )
+
+        if not isinstance(strategy, BattleStrategy):
+            raise TypeError(
+                f"Expected BattleStrategy, got "
+                f"{type(strategy).__name__}"
+            )
     print("*** Tournament ***")
     print(f"{len(opponents)} opponents involved")
 

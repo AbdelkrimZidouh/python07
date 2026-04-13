@@ -1,4 +1,5 @@
 import abc
+import typing
 from ex0.creatures import Creature
 from ex1.capabilities import HealCapability, TransformCapability
 
@@ -31,9 +32,10 @@ class AggressiveStrategy(BattleStrategy):
                 f"Invalid Creature '{creature.name}' "
                 f"for this aggressive strategy"
             )
-        t = creature
+
+        t = typing.cast(TransformCapability, creature)
         print(t.transform())
-        print(t.attack())
+        print(creature.attack())
         print(t.revert())
 
 
@@ -48,5 +50,6 @@ class DefensiveStrategy(BattleStrategy):
                 f"for this defensive strategy"
             )
         print(creature.attack())
-        h = creature
+
+        h = typing.cast(HealCapability, creature)
         print(h.heal())
