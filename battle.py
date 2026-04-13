@@ -3,6 +3,12 @@ from ex0.factories import CreatureFactory
 
 
 def test_factory(factory: CreatureFactory) -> None:
+    if not isinstance(factory, CreatureFactory):
+        raise TypeError(
+            f"Expected a CreatureFactory, but got "
+            f"{type(factory).__name__}"
+        )
+
     print("Testing factory")
     base = factory.create_base()
     print(base.describe())
@@ -13,6 +19,17 @@ def test_factory(factory: CreatureFactory) -> None:
 
 
 def test_battle(factory1: CreatureFactory, factory2: CreatureFactory) -> None:
+    if not isinstance(factory1, CreatureFactory):
+        raise TypeError(
+            f"Expected factory1 to be a CreatureFactory, "
+            f"but got {type(factory1).__name__}"
+        )
+
+    if not isinstance(factory2, CreatureFactory):
+        raise TypeError(
+            f"Expected factory2 to be a CreatureFactory, "
+            f"but got {type(factory2).__name__}"
+        )
     print("Testing battle")
     c1 = factory1.create_base()
     c2 = factory2.create_base()
